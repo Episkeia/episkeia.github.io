@@ -147,7 +147,7 @@
 			
 			var table = document.getElementsById("analysisTable");
 			if(table != null)
-				document.removeChild(tables[i]);
+				document.getElementById("content").removeChild(table);
 						
 			table = document.createElement('table');
 			table.setAttribute("cellspacing", "'0'");
