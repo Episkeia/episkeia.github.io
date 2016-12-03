@@ -17,10 +17,15 @@
 			var strPlayers = document.getElementById("joueurs").value;
 			var linesPlayers = strPlayers.split("\n");
 			var players = [];
+			var occultes = [];
 			for(var i = 0; i < linesPlayers.length; i++) {
 				lengthName = linesPlayers[i].indexOf("(") - 1;
 				if(lengthName > 0) {
 					players.push(linesPlayers[i].substring(0, lengthName).trim());
+					if(linesPlayers[i].indexOf("Occulte") == -1)
+						occultes.push(false);
+					else
+						occultes.push(true);
 				}
 			}
 			var nbPlayers = players.length;
@@ -61,6 +66,14 @@
 				}
 			}
 			
+			var nbNightMessages = [];
+			for(var i = 0; i < nbPlayers; i++) {
+				nbNightMessages.push([]);
+				for(var j = 0; j < nbDays; j++) {
+					nbNightMessages[i].push(0);
+				}
+			}
+			
 			var death = [];
 			for(var i = 0; i < nbPlayers; i++) {
 				death.push(100);
@@ -68,6 +81,8 @@
 			
 			var posDay = [1,3];
 			var posMonth = [4,6];
+			var posHour = [7,9];
+			var posMin = [10,12];
 			var posPseudo = [15,0]; // first char of the pseudo
 			var pseudo;
 			var date = new Date(0, 0, 1);
@@ -143,6 +158,13 @@
 					continue;
 				
 				nbMessages[playerIndex][dateIndex] ++;
+				
+				if(occultes[playerIndex] == true) {
+					var hour = parseInt(logs[i].substring(posHour[0], posHour[1]));
+					var minutes = parseInt(logs[i].substring(posMin[0], posMin[1]));
+					if((hour == 20 && minutes > 30) || hour == 21 || (hour == 22 && minutes < 30))
+						nbNightMessages[playerIndex][dateIndex] ++;
+				}
 			}
 			
 			var table = document.getElementById("analysisTable");
@@ -183,7 +205,10 @@
 				
 				for(var j = 0; j < nbDays; j++) {
 					td = document.createElement('td');
-					text = document.createTextNode(nbMessages[i][j]);
+					if(occultes[i] == false)
+						text = document.createTextNode(nbMessages[i][j]);
+					else	
+						text = document.createTextNode(nbMessages[i][j] + " (" + nbNightMessages[i][j] + ")");
 					if(nbMessages[i][j] < 5) {
 						td.setAttribute("class", "warning");
 					}
