@@ -145,8 +145,13 @@
 				nbMessages[playerIndex][dateIndex] ++;
 			}
 			
-			var table = document.createElement('table');
+			var table = document.getElementsById("analysisTable");
+			if(table != null)
+				document.removeChild(tables[i]);
+						
+			table = document.createElement('table');
 			table.setAttribute("cellspacing", "'0'");
+			table.setAttribute("id", "analysisTable");
 			
 			var tr;
 			var td;
