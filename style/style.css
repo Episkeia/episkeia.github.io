@@ -9,23 +9,12 @@ body
 	font-family: arial, helvetica, sans-serif;
 }
 
-h2
-{
-	margin: auto;
-	margin-top: 0.8em;
-	margin-bottom:0.5em;
-	color: #333;
-	font-weight: normal;
-	font-family: 'Orienta', arial, sans-serif;
-	font-size: 36px;
-	line-height: 40px;
-}
 
 .content {
 	border: 1px solid black;
 	border-radius: 10px;
 	box-shadow: 0px 0px 4px black;
-	width: 800px;
+	width: 900px;
     background: white;
     padding: 20px;
     margin: auto;
@@ -65,6 +54,7 @@ select:focus { outline-color: #c00 }
 
 textarea {
     min-height: 55px;
+	font-size:12px;
     background: #f6f6f6;
 	background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6));
 	background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6);
@@ -211,17 +201,24 @@ table {
 }
 
 table th {
-	padding:21px 25px 22px 25px;
+	padding:15px 2px 15px 2px;
 	border-top:1px solid #fafafa;
 	border-bottom:1px solid #e0e0e0;
 
 	background: #ededed;
 	background: linear-gradient(#ededed,  #ebebeb);
 }
+
+
 table th:first-child {
-	text-align: left;
-	padding-left:20px;
+	white-space:nowrap;
+	width:1px;
 }
+
+table th:nth-child(2) {
+	width:1px;
+}
+
 table tr:first-child th:first-child {
 	-moz-border-radius-topleft:3px;
 	-webkit-border-top-left-radius:3px;
@@ -236,11 +233,14 @@ table tr {
 	text-align: center;
 	padding-left:20px;
 }
+
 table td:first-child {
 	text-align: left;
 	padding-left:20px;
 	border-left: 0;
+	white-space:nowrap;
 }
+
 table td {
 	padding:10px;
 	border-top: 1px solid #ffffff;
@@ -249,6 +249,7 @@ table td {
 
 	background-color: #fafafa;
 }
+
 table tr:nth-child(even) td {
 	background-color: #f6f6f6;
 }
@@ -269,6 +270,12 @@ table tr:hover td {
 	background-color: #f2f2f2;
 }
 
+table td.noAction {
+	background-image: url('error.png');
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
 table td.warning {
 	color: red;
 	font-weight: bold;
@@ -280,4 +287,18 @@ table td.dead {
 	background-size: 20px;
 	background-position: center center;
 	opacity:0.5;
+}
+
+table td.day {
+	background-image: url('sun.png');
+	background-repeat: no-repeat;
+	background-position: 4px center;
+	padding-right:5px;
+}
+
+table td.night {
+	background-image: url('moon.png');
+	background-repeat: no-repeat;
+	background-position: 4px center;
+	padding-right:5px;
 }
