@@ -164,7 +164,7 @@
 					pos = logs[i].indexOf("Le village décide de tuer ");
 					if(pos != -1) {
 						pos = pos + "Le village décide de tuer ".length;
-						posFin = logs[i].indexOf(" à la majorité", pos);
+						posFin = logs[i].indexOf(" à la", pos);
 						pseudo = logs[i].substring(pos, posFin);
 						playerIndex = players.indexOf(pseudo);
 						death[playerIndex] = dateIndex;
